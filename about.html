@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Glamora Collection</title>
+  <meta name="description" content="Discover the story, craftsmanship, and pure cotton philosophy behind Glamora Collection." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              burgundy: '#631d2e',
+              burgundyDark: '#45121e',
+              rose: '#e11d48',
+              cream: '#faf7f2',
+              sand: '#f5f0e6',
+              gold: '#c59b27'
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-stone-50 text-stone-900 flex flex-col min-h-screen">
+
+  <!-- ================= TOP ANNOUNCEMENT BAR ================= -->
+  <div class="bg-brand-burgundy text-white text-xs py-2 px-4 overflow-hidden border-b border-brand-burgundyDark">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="hidden md:flex items-center gap-4 text-stone-200">
+        <span><i class="fa-solid fa-truck-fast text-brand-gold mr-1.5"></i> Free Express Shipping on orders over ₹999</span>
+        <span>•</span>
+        <span><i class="fa-solid fa-rotate-left text-brand-gold mr-1.5"></i> 7-Day Easy Exchange</span>
+      </div>
+      <div class="w-full md:w-auto text-center font-medium">
+        <span>🎉 Festive Launch Special: Use code <span class="bg-white/20 px-2 py-0.5 rounded font-mono font-bold text-amber-200">GLAM15</span> for 15% OFF!</span>
+      </div>
+      <div class="hidden md:flex items-center gap-3 text-stone-200">
+        <a href="contact.html" class="hover:text-white transition-colors">Help & FAQ</a>
+        <span>•</span>
+        <span class="flex items-center gap-1"><i class="fa-solid fa-phone text-xs"></i> +91 98765 43210</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= STICKY MAIN HEADER ================= -->
+  <header class="sticky top-0 z-40 nav-glass border-b border-stone-200/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <button id="mobile-menu-toggle" type="button" class="lg:hidden text-stone-800 hover:text-brand-burgundy p-2" aria-label="Open navigation menu">
+          <i class="fa-solid fa-bars-staggered text-xl"></i>
+        </button>
+
+        <a href="index.html" class="flex flex-col items-center sm:items-start group">
+          <span class="font-serif text-2xl sm:text-3xl font-extrabold tracking-wider text-brand-burgundy group-hover:text-brand-burgundyDark transition-colors">
+            GLAMORA
+          </span>
+          <span class="text-[9px] sm:text-[10px] uppercase tracking-[0.3em] font-medium text-stone-500 -mt-1">
+            Collection
+          </span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="index.html" class="text-sm font-medium text-stone-700 hover:text-brand-burgundy transition-colors">Home</a>
+          <a href="clothes.html" class="text-sm font-medium text-stone-700 hover:text-brand-burgundy transition-colors">All Clothes</a>
+          <a href="sales.html" class="text-sm font-medium text-rose-700 hover:text-rose-900 transition-colors flex items-center gap-1.5">
+            Sales & Offers
+            <span class="bg-rose-100 text-rose-700 text-[10px] font-bold px-1.5 py-0.5 rounded-full badge-pulse">HOT</span>
+          </a>
+          <a href="about.html" class="text-sm font-semibold text-brand-burgundy border-b-2 border-brand-burgundy pb-1">About Us</a>
+          <a href="contact.html" class="text-sm font-medium text-stone-700 hover:text-brand-burgundy transition-colors">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-2 sm:gap-4">
+          <form class="search-form hidden md:flex items-center relative">
+            <input 
+              type="search" 
+              name="q" 
+              placeholder="Search..." 
+              class="w-48 lg:w-64 pl-9 pr-3 py-1.5 text-xs rounded-full bg-stone-100 border border-stone-200 focus:outline-none focus:border-brand-burgundy focus:ring-1 focus:ring-brand-burgundy transition-all"
+            />
+            <i class="fa-solid fa-magnifying-glass absolute left-3 text-stone-400 text-xs pointer-events-none"></i>
+          </form>
+
+          <a href="clothes.html#wishlist" class="relative p-2.5 text-stone-700 hover:text-rose-600 transition-colors" title="Wishlist">
+            <i class="fa-regular fa-heart text-lg"></i>
+            <span class="wishlist-counter-badge absolute top-1 right-1 w-4 h-4 bg-rose-600 text-white text-[10px] font-bold rounded-full items-center justify-center hidden">0</span>
+          </a>
+
+          <button 
+            type="button" 
+            onclick="openCartDrawer()" 
+            class="relative flex items-center gap-2 bg-stone-900 hover:bg-brand-burgundy text-white px-3.5 py-2 rounded-xl transition-all shadow-sm group"
+          >
+            <i class="fa-solid fa-bag-shopping text-sm group-hover:scale-110 transition-transform"></i>
+            <span class="hidden sm:inline text-xs font-semibold">Bag</span>
+            <span class="cart-counter-badge w-5 h-5 bg-rose-500 text-white text-[11px] font-bold rounded-full items-center justify-center hidden">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MOBILE MENU ================= -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 bg-stone-950/60 backdrop-blur-sm hidden transition-opacity">
+    <div class="fixed inset-y-0 left-0 max-w-xs w-full bg-white shadow-2xl p-6 flex flex-col justify-between overflow-y-auto">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-stone-200">
+          <div>
+            <span class="font-serif text-2xl font-bold text-brand-burgundy">GLAMORA</span>
+            <p class="text-[10px] tracking-widest uppercase text-stone-500">Collection</p>
+          </div>
+          <button id="mobile-menu-close" class="p-2 text-stone-500 hover:text-stone-900">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+        <nav class="mt-6 flex flex-col gap-3 font-medium">
+          <a href="index.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-stone-50 text-stone-800">
+            <span>Home</span> <i class="fa-solid fa-chevron-right text-xs"></i>
+          </a>
+          <a href="clothes.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-stone-50 text-stone-800">
+            <span>All Clothes</span> <i class="fa-solid fa-chevron-right text-xs"></i>
+          </a>
+          <a href="sales.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-rose-50 text-rose-700 font-semibold">
+            <span>Sales & Offers <span class="bg-rose-600 text-white text-[10px] px-1.5 py-0.5 rounded-full ml-1">HOT</span></span>
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+          </a>
+          <a href="about.html" class="flex items-center justify-between p-2 rounded-lg bg-stone-100 text-brand-burgundy font-semibold">
+            <span>About Us</span> <i class="fa-solid fa-chevron-right text-xs"></i>
+          </a>
+          <a href="contact.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-stone-50 text-stone-800">
+            <span>Contact & Support</span> <i class="fa-solid fa-chevron-right text-xs"></i>
+          </a>
+          <a href="cart.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-stone-50 text-stone-800">
+            <span>Shopping Cart</span> <i class="fa-solid fa-bag-shopping text-xs"></i>
+          </a>
+        </nav>
+      </div>
+      <div class="pt-6 border-t border-stone-200 text-xs text-stone-500">
+        <p class="font-medium text-stone-800 mb-1">Customer Support</p>
+        <p><i class="fa-solid fa-phone text-brand-burgundy mr-1.5"></i> +91 98765 43210</p>
+        <p class="mt-1"><i class="fa-solid fa-envelope text-brand-burgundy mr-1.5"></i> care@glamoracollection.com</p>
+      </div>
+    </div>
+  </div>
+
+  <main class="flex-grow">
+    
+    <!-- ================= ABOUT HERO ================= -->
+    <section class="py-16 sm:py-24 bg-brand-cream border-b border-stone-200">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand-burgundy bg-rose-100 px-4 py-1.5 rounded-full">
+          The Glamora Story
+        </span>
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-stone-900 leading-tight">
+          Where Artisanal Heritage Meets Everyday Comfort.
+        </h1>
+        <p class="text-base sm:text-lg text-stone-600 leading-relaxed max-w-2xl mx-auto">
+          We founded Glamora Collection on a simple belief: Women shouldn't have to choose between looking effortlessly elegant and feeling completely at home in their clothes.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= CRAFTSMANSHIP & ORIGINS ================= -->
+    <section class="py-16 sm:py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          <div class="space-y-6">
+            <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">
+              Rooted in Tradition
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900">
+              The Poetry of Indian Textile Prints
+            </h2>
+            <p class="text-sm sm:text-base text-stone-600 leading-relaxed">
+              Every print featured in our collection has a story. The stately Elephant symbolizes royalty, prosperity, and wisdom. The graceful Peacock echoes timeless beauty and joy. The delicate botanical vines celebrate nature's organic elegance.
+            </p>
+            <p class="text-sm sm:text-base text-stone-600 leading-relaxed">
+              Rather than synthetic factory fast-fashion, we prioritize natural combed cotton spun to perfection. It is soft on sensitive skin, adapts effortlessly to changing weather, and breathes naturally so you stay cool and serene.
+            </p>
+
+            <div class="border-l-4 border-brand-burgundy pl-4 py-2 italic text-stone-700 text-sm">
+              "We design dresses for the moments in life that matter: serene morning tea, cozy evenings with family, relaxed holiday retreats, and confident everyday living."
+            </div>
+          </div>
+
+          <!-- Visual Showcase Collage -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-4">
+              <div class="aspect-[3/4] rounded-2xl overflow-hidden shadow-md border border-stone-200">
+                <img src="images/dress-maroon-elephant.jpg" alt="Maroon Elephant Detail" class="w-full h-full object-cover object-top" />
+              </div>
+              <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-md border border-stone-200">
+                <img src="images/dress-floral-combo.jpg" alt="Floral Combo Detail" class="w-full h-full object-cover" />
+              </div>
+            </div>
+            <div class="space-y-4 pt-8">
+              <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-md border border-stone-200 bg-stone-100 flex items-center justify-center p-6 text-center">
+                <div>
+                  <i class="fa-solid fa-leaf text-3xl text-emerald-600 mb-2"></i>
+                  <h4 class="font-serif font-bold text-stone-900 text-base">Pure Combed Cotton</h4>
+                  <p class="text-xs text-stone-500 mt-1">Lightweight, skin-friendly, natural</p>
+                </div>
+              </div>
+              <div class="aspect-[3/4] rounded-2xl overflow-hidden shadow-md border border-stone-200">
+                <img src="images/dress-heritage-peacock.jpg" alt="Heritage Peacock Detail" class="w-full h-full object-cover object-top" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PILLARS OF OUR BRAND ================= -->
+    <section class="py-16 bg-brand-sand/50 border-y border-stone-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-xs font-bold uppercase tracking-widest text-brand-burgundy">Our Core Values</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-2">What Makes Glamora Distinct</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <div class="bg-white p-8 rounded-3xl border border-stone-200 shadow-sm space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-rose-50 text-brand-burgundy flex items-center justify-center text-2xl">
+              <i class="fa-solid fa-gem"></i>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-stone-900">100% Breathable Fiber</h3>
+            <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+              We never cut corners with itchy synthetic mixes or polyester blends. Our garments use pure combed long-staple cotton that stays soft and cozy across hundreds of gentle washes.
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-3xl border border-stone-200 shadow-sm space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center text-2xl">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-stone-900">Forgiving, Flattering Silhouettes</h3>
+            <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+              Our dresses are thoughtfully designed with generous bust room (up to 44 inches) and gentle A-line silhouettes that drape gracefully over every body contour with ease.
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-3xl border border-stone-200 shadow-sm space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-2xl">
+              <i class="fa-solid fa-hand-holding-dollar"></i>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-stone-900">Direct-To-You Honest Pricing</h3>
+            <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+              By working directly with fabric mills and avoiding high department store markups, we deliver luxury-grade cotton dresses starting at just ₹699.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= COTTON CARE GUIDE ================= -->
+    <section id="care-guide" class="py-16 sm:py-20 bg-white">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-xl mx-auto mb-12">
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">
+            Longevity & Care
+          </span>
+          <h2 class="font-serif text-3xl font-bold text-stone-900 mt-3">How to Care for Your Cotton Dresses</h2>
+          <p class="text-xs sm:text-sm text-stone-600 mt-2">
+            Pure natural cotton matures gracefully with simple gentle handling. Follow these easy steps to keep your colors vibrant for years:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="p-6 rounded-2xl border border-stone-200 bg-stone-50 text-center space-y-2">
+            <i class="fa-solid fa-temperature-arrow-down text-2xl text-brand-burgundy"></i>
+            <h4 class="font-bold text-sm text-stone-900">Cold Water Wash</h4>
+            <p class="text-xs text-stone-500">Machine wash on gentle cycle or hand wash at 30°C to preserve fiber elasticity.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-stone-200 bg-stone-50 text-center space-y-2">
+            <i class="fa-solid fa-soap text-2xl text-amber-600"></i>
+            <h4 class="font-bold text-sm text-stone-900">Mild Liquid Detergent</h4>
+            <p class="text-xs text-stone-500">Avoid chlorine bleaches or harsh optical brighteners that can strip natural pigments.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-stone-200 bg-stone-50 text-center space-y-2">
+            <i class="fa-solid fa-cloud-sun text-2xl text-emerald-600"></i>
+            <h4 class="font-bold text-sm text-stone-900">Shade Dry</h4>
+            <p class="text-xs text-stone-500">Dry inside out under indirect shade. Natural cotton dries quickly in a breezy spot.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-stone-200 bg-stone-50 text-center space-y-2">
+            <i class="fa-solid fa-iron text-2xl text-indigo-600"></i>
+            <h4 class="font-bold text-sm text-stone-900">Warm Steam Iron</h4>
+            <p class="text-xs text-stone-500">Iron on reverse side with light steam for that crisp, boutique-fresh look.</p>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center">
+          <a href="clothes.html" class="inline-flex items-center gap-2 bg-brand-burgundy hover:bg-brand-burgundyDark text-white font-semibold text-sm px-8 py-3.5 rounded-xl shadow-md transition-all">
+            <span>Explore The Collection</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-stone-950 text-stone-300 pt-16 pb-12 border-t border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-stone-800">
+        <div class="lg:col-span-2 space-y-4">
+          <a href="index.html" class="inline-block">
+            <span class="font-serif text-3xl font-bold text-white tracking-wider">GLAMORA</span>
+            <p class="text-[10px] tracking-[0.3em] uppercase text-stone-400 -mt-1">Collection</p>
+          </a>
+          <p class="text-xs text-stone-400 leading-relaxed max-w-sm">
+            Glamora Collection celebrates the timeless beauty of feminine grace and everyday ease. Designed with 100% pure natural cotton and handpicked traditional Indian motifs.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-white text-sm font-semibold uppercase tracking-wider mb-4">Shop Pages</h4>
+          <ul class="space-y-2.5 text-xs text-stone-400">
+            <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="clothes.html" class="hover:text-white transition-colors">All Clothes & Dresses</a></li>
+            <li><a href="sales.html" class="hover:text-rose-400 transition-colors">Sales & Special Offers</a></li>
+            <li><a href="cart.html" class="hover:text-white transition-colors">View Cart & Checkout</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white text-sm font-semibold uppercase tracking-wider mb-4">Customer Care</h4>
+          <ul class="space-y-2.5 text-xs text-stone-400">
+            <li><a href="about.html" class="hover:text-white transition-colors">Our Story & Craft</a></li>
+            <li><a href="contact.html" class="hover:text-white transition-colors">Contact Support</a></li>
+            <li><a href="contact.html#faqs" class="hover:text-white transition-colors">Shipping & Returns</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white text-sm font-semibold uppercase tracking-wider mb-4">Reach Us</h4>
+          <ul class="space-y-3 text-xs text-stone-400">
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-location-dot text-brand-gold mt-0.5"></i>
+              <span>Glamora Boutique, Fashion Avenue, Bandra West, Mumbai 400050</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i class="fa-solid fa-phone text-brand-gold"></i>
+              <span>+91 98765 43210</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-4">
+        <p>© 2026 Glamora Collection. All rights reserved.</p>
+        <div class="flex items-center gap-4 text-stone-400">
+          <span title="Visa"><i class="fa-brands fa-cc-visa text-xl"></i></span>
+          <span title="Mastercard"><i class="fa-brands fa-cc-mastercard text-xl"></i></span>
+          <span class="text-[10px] bg-stone-800 px-2 py-0.5 rounded text-stone-300 font-mono">Cash on Delivery</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= SLIDE-OUT CART DRAWER ================= -->
+  <div id="cart-drawer-overlay" class="fixed inset-0 z-50 bg-stone-950/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300"></div>
+  <div id="cart-drawer" class="fixed top-0 right-0 bottom-0 z-50 w-full max-w-md bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out">
+    <div class="p-5 border-b border-stone-200 flex items-center justify-between bg-stone-50">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-bag-shopping text-brand-burgundy"></i>
+        <h3 class="font-serif font-bold text-lg text-stone-900">Your Shopping Bag</h3>
+        <span class="cart-counter-badge bg-rose-600 text-white text-xs font-bold px-2 py-0.5 rounded-full hidden">0</span>
+      </div>
+      <button onclick="closeCartDrawer()" class="p-1.5 text-stone-400 hover:text-stone-900 rounded-lg hover:bg-stone-200 transition-colors">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+    </div>
+    <div class="bg-rose-50 px-5 py-2.5 border-b border-rose-100 text-xs text-rose-900 flex items-center gap-2 font-medium">
+      <i class="fa-solid fa-truck-fast text-rose-600"></i>
+      <span>Free Express Shipping automatically applied on orders above ₹999!</span>
+    </div>
+    <div id="cart-drawer-items" class="flex-1 overflow-y-auto p-5 divide-y divide-stone-100"></div>
+    <div id="cart-drawer-empty" class="p-8 text-center my-auto">
+      <div class="w-16 h-16 rounded-full bg-stone-100 text-stone-400 flex items-center justify-center mx-auto mb-4 text-2xl">
+        <i class="fa-solid fa-bag-shopping"></i>
+      </div>
+      <h4 class="font-serif text-lg font-bold text-stone-800">Your bag is empty</h4>
+    </div>
+    <div id="cart-drawer-footer" class="p-5 border-t border-stone-200 bg-stone-50 space-y-3">
+      <div class="flex items-center justify-between text-sm">
+        <span class="text-stone-600">Subtotal:</span>
+        <span id="cart-drawer-subtotal" class="font-bold text-stone-950 text-base">₹0</span>
+      </div>
+      <div class="grid grid-cols-2 gap-2 pt-1">
+        <a href="cart.html" class="w-full text-center py-3 border border-stone-300 hover:border-stone-900 text-stone-800 text-xs font-semibold rounded-xl transition-colors">View Cart</a>
+        <a href="cart.html#checkout" class="w-full text-center py-3 bg-brand-burgundy hover:bg-brand-burgundyDark text-white text-xs font-semibold rounded-xl shadow transition-colors">Checkout Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

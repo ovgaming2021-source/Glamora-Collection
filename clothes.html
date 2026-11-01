@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Clothes & Dresses | Glamora Collection</title>
+  <meta name="description" content="Explore Glamora Collection's full line of 100% pure cotton women's dresses, maxi loungewear, ethnic elephant prints, and floral sundresses." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              burgundy: '#631d2e',
+              burgundyDark: '#45121e',
+              rose: '#e11d48',
+              cream: '#faf7f2',
+              sand: '#f5f0e6',
+              gold: '#c59b27'
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-stone-50 text-stone-900 flex flex-col min-h-screen">
+
+  <!-- ================= TOP ANNOUNCEMENT BAR ================= -->
+  <div class="bg-brand-burgundy text-white text-xs py-2 px-4 overflow-hidden border-b border-brand-burgundyDark">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="hidden md:flex items-center gap-4 text-stone-200">
+        <span><i class="fa-solid fa-truck-fast text-brand-gold mr-1.5"></i> Free Express Shipping on orders over ₹999</span>
+        <span>•</span>
+        <span><i class="fa-solid fa-rotate-left text-brand-gold mr-1.5"></i> 7-Day Easy Exchange</span>
+      </div>
+      <div class="w-full md:w-auto text-center font-medium">
+        <span>🎉 Festive Launch Special: Use code <span class="bg-white/20 px-2 py-0.5 rounded font-mono font-bold text-amber-200">GLAM15</span> for 15% OFF!</span>
+      </div>
+      <div class="hidden md:flex items-center gap-3 text-stone-200">
+        <a href="contact.html" class="hover:text-white transition-colors">Help & FAQ</a>
+        <span>•</span>
+        <span class="flex items-center gap-1"><i class="fa-solid fa-phone text-xs"></i> +91 98765 43210</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= STICKY MAIN HEADER ================= -->
+  <header class="sticky top-0 z-40 nav-glass border-b border-stone-200/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-toggle" type="button" class="lg:hidden text-stone-800 hover:text-brand-burgundy p-2" aria-label="Open navigation menu">
+          <i class="fa-solid fa-bars-staggered text-xl"></i>
+        </button>
+
+        <!-- Brand Logo -->
+        <a href="index.html" class="flex flex-col items-center sm:items-start group">
+          <span class="font-serif text-2xl sm:text-3xl font-extrabold tracking-wider text-brand-burgundy group-hover:text-brand-burgundyDark transition-colors">
+            GLAMORA
+          </span>
+          <span class="text-[9px] sm:text-[10px] uppercase tracking-[0.3em] font-medium text-stone-500 -mt-1">
+            Collection
+          </span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="index.html" class="text-sm font-medium text-stone-700 hover:text-brand-burgundy transition-colors">Home</a>
+          <a href="clothes.html" class="text-sm font-semibold text-brand-burgundy border-b-2 border-brand-burgundy pb-1">All Clothes</a>
+          <a href="sales.html" class="text-sm font-medium text-rose-700 hover:text-rose-900 transition-colors flex items-center gap-1.5">
+            Sales & Offers
+            <span class="bg-rose-100 text-rose-700 text-[10px] font-bold px-1.5 py-0.5 rounded-full badge-pulse">HOT</span>
+          </a>
+          <a href="about.html" class="text-sm font-medium text-stone-700 hover:text-brand-burgundy transition-colors">About Us</a>
+          <a href="contact.html" class="text-sm font-medium text-stone-700 hover:text-brand-burgundy transition-colors">Contact</a>
+        </nav>
+
+        <!-- Action Icons (Search, Wishlist, Cart) -->
+        <div class="flex items-center gap-2 sm:gap-4">
+          
+          <!-- Search Bar (Desktop) -->
+          <form class="search-form hidden md:flex items-center relative" id="header-search-form">
+            <input 
+              type="search" 
+              name="q" 
+              placeholder="Search clothes..." 
+              class="w-48 lg:w-64 pl-9 pr-3 py-1.5 text-xs rounded-full bg-stone-100 border border-stone-200 focus:outline-none focus:border-brand-burgundy focus:ring-1 focus:ring-brand-burgundy transition-all"
+            />
+            <i class="fa-solid fa-magnifying-glass absolute left-3 text-stone-400 text-xs pointer-events-none"></i>
+          </form>
+
+          <!-- Wishlist Button Filter -->
+          <button 
+            type="button" 
+            onclick="toggleWishlistOnlyFilter()" 
+            class="relative p-2.5 text-stone-700 hover:text-rose-600 transition-colors" 
+            id="wishlist-toggle-filter-btn"
+            title="Show Wishlist Items"
+          >
+            <i class="fa-regular fa-heart text-lg"></i>
+            <span class="wishlist-counter-badge absolute top-1 right-1 w-4 h-4 bg-rose-600 text-white text-[10px] font-bold rounded-full items-center justify-center hidden">0</span>
+          </button>
+
+          <!-- Cart Drawer Trigger -->
+          <button 
+            type="button" 
+            onclick="openCartDrawer()" 
+            class="relative flex items-center gap-2 bg-stone-900 hover:bg-brand-burgundy text-white px-3.5 py-2 rounded-xl transition-all shadow-sm group"
+            title="View Shopping Bag"
+          >
+            <i class="fa-solid fa-bag-shopping text-sm group-hover:scale-110 transition-transform"></i>
+            <span class="hidden sm:inline text-xs font-semibold">Bag</span>
+            <span class="cart-counter-badge w-5 h-5 bg-rose-500 text-white text-[11px] font-bold rounded-full items-center justify-center hidden">0</span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MOBILE NAVIGATION DRAWER ================= -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 bg-stone-950/60 backdrop-blur-sm hidden transition-opacity">
+    <div class="fixed inset-y-0 left-0 max-w-xs w-full bg-white shadow-2xl p-6 flex flex-col justify-between overflow-y-auto">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-stone-200">
+          <div>
+            <span class="font-serif text-2xl font-bold text-brand-burgundy">GLAMORA</span>
+            <p class="text-[10px] tracking-widest uppercase text-stone-500">Collection</p>
+          </div>
+          <button id="mobile-menu-close" class="p-2 text-stone-500 hover:text-stone-900">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+
+        <nav class="mt-6 flex flex-col gap-3 font-medium">
+          <a href="index.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-stone-50 text-stone-800">
+            <span>Home</span> <i class="fa-solid fa-chevron-right text-xs"></i>
+          </a>
+          <a href="clothes.html" class="flex items-center justify-between p-2 rounded-lg bg-stone-100 text-brand-burgundy font-semibold">
+            <span>All Clothes</span> <i class="fa-solid fa-chevron-right text-xs"></i>
+          </a>
+          <a href="sales.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-rose-50 text-rose-700 font-semibold">
+            <span>Sales & Offers <span class="bg-rose-600 text-white text-[10px] px-1.5 py-0.5 rounded-full ml-1">HOT</span></span>
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+          </a>
+          <a href="about.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-stone-50 text-stone-800">
+            <span>About Us</span> <i class="fa-solid fa-chevron-right text-xs"></i>
+          </a>
+          <a href="contact.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-stone-50 text-stone-800">
+            <span>Contact & Support</span> <i class="fa-solid fa-chevron-right text-xs"></i>
+          </a>
+          <a href="cart.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-stone-50 text-stone-800">
+            <span>Shopping Cart</span> <i class="fa-solid fa-bag-shopping text-xs"></i>
+          </a>
+        </nav>
+      </div>
+
+      <div class="pt-6 border-t border-stone-200 text-xs text-stone-500">
+        <p class="font-medium text-stone-800 mb-1">Customer Support</p>
+        <p><i class="fa-solid fa-phone text-brand-burgundy mr-1.5"></i> +91 98765 43210</p>
+        <p class="mt-1"><i class="fa-solid fa-envelope text-brand-burgundy mr-1.5"></i> care@glamoracollection.com</p>
+      </div>
+    </div>
+  </div>
+
+  <main class="flex-grow py-8 sm:py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumbs -->
+      <nav class="flex items-center gap-2 text-xs text-stone-500 mb-6">
+        <a href="index.html" class="hover:text-brand-burgundy">Home</a>
+        <i class="fa-solid fa-chevron-right text-[9px] text-stone-400"></i>
+        <span class="text-stone-800 font-semibold">All Clothes</span>
+      </nav>
+
+      <!-- Page Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between pb-6 border-b border-stone-200 gap-4">
+        <div>
+          <h1 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900">
+            Women's Pure Cotton Dresses
+          </h1>
+          <p class="text-sm text-stone-600 mt-2 max-w-2xl">
+            Explore our curated selection of four distinctive artisanal cotton dresses. Designed for lightweight comfort, traditional ethnic splendor, and everyday relaxation.
+          </p>
+        </div>
+
+        <div class="text-sm text-stone-500 font-medium">
+          Showing <span id="product-count-display" class="font-bold text-stone-900">4</span> available styles
+        </div>
+      </div>
+
+      <!-- Filters & Sorting Bar -->
+      <div class="py-6 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 border-b border-stone-200">
+        
+        <!-- Category Filter Pills -->
+        <div class="flex flex-wrap items-center gap-2" id="category-filter-group">
+          <button 
+            type="button" 
+            onclick="setCategoryFilter('all')" 
+            data-cat="all" 
+            class="filter-pill active px-4 py-2 rounded-xl text-xs font-semibold transition-all bg-brand-burgundy text-white shadow-sm"
+          >
+            All Dresses (4)
+          </button>
+          <button 
+            type="button" 
+            onclick="setCategoryFilter('maxi-lounge')" 
+            data-cat="maxi-lounge" 
+            class="filter-pill px-4 py-2 rounded-xl text-xs font-semibold transition-all bg-white text-stone-700 border border-stone-200 hover:border-stone-400"
+          >
+            Maxi & Lounge (2)
+          </button>
+          <button 
+            type="button" 
+            onclick="setCategoryFilter('ethnic-maxi')" 
+            data-cat="ethnic-maxi" 
+            class="filter-pill px-4 py-2 rounded-xl text-xs font-semibold transition-all bg-white text-stone-700 border border-stone-200 hover:border-stone-400"
+          >
+            Ethnic Heritage (1)
+          </button>
+          <button 
+            type="button" 
+            onclick="setCategoryFilter('sundress-lounge')" 
+            data-cat="sundress-lounge" 
+            class="filter-pill px-4 py-2 rounded-xl text-xs font-semibold transition-all bg-white text-stone-700 border border-stone-200 hover:border-stone-400"
+          >
+            Sleeveless Sundress (1)
+          </button>
+        </div>
+
+        <!-- Controls: Search & Sort -->
+        <div class="flex flex-wrap items-center gap-3">
+          
+          <!-- Live Catalog Search -->
+          <div class="relative flex-1 sm:w-60">
+            <input 
+              type="text" 
+              id="catalog-search-input" 
+              placeholder="Filter by keyword..." 
+              oninput="handleCatalogSearch(this.value)"
+              class="w-full pl-9 pr-3 py-2 text-xs rounded-xl bg-white border border-stone-200 focus:outline-none focus:border-brand-burgundy focus:ring-1 focus:ring-brand-burgundy"
+            />
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-stone-400 text-xs pointer-events-none"></i>
+          </div>
+
+          <!-- Sort Select -->
+          <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-stone-200">
+            <label for="catalog-sort" class="text-xs text-stone-500 font-medium whitespace-nowrap">Sort:</label>
+            <select 
+              id="catalog-sort" 
+              onchange="handleSortChange(this.value)" 
+              class="text-xs font-semibold text-stone-800 bg-transparent focus:outline-none cursor-pointer pr-1"
+            >
+              <option value="featured">Featured First</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating">Highest Customer Rating</option>
+              <option value="discount">Biggest Discount</option>
+            </select>
+          </div>
+
+          <!-- Reset Button -->
+          <button 
+            type="button" 
+            id="clear-filters-btn"
+            onclick="resetAllFilters()" 
+            class="text-xs text-rose-600 hover:text-rose-800 font-medium hidden flex items-center gap-1"
+          >
+            <i class="fa-solid fa-rotate-left"></i> Reset
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Active Filter Status Bar -->
+      <div id="active-filter-bar" class="hidden py-3 text-xs text-stone-600 flex items-center justify-between">
+        <span id="active-filter-text">Filtering applied</span>
+        <button onclick="resetAllFilters()" class="text-brand-burgundy font-semibold hover:underline">Clear Filters</button>
+      </div>
+
+      <!-- Product Catalog Grid -->
+      <div id="catalog-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mt-8">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="catalog-empty-state" class="hidden py-20 text-center">
+        <div class="w-16 h-16 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-4 text-2xl">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <h3 class="font-serif text-2xl font-bold text-stone-900">No dresses matched your search</h3>
+        <p class="text-sm text-stone-500 mt-2 max-w-md mx-auto">
+          Try adjusting your keywords or clearing selected category filters to view our full collection.
+        </p>
+        <button onclick="resetAllFilters()" class="mt-6 bg-brand-burgundy hover:bg-brand-burgundyDark text-white text-xs font-semibold px-6 py-3 rounded-xl transition-colors shadow">
+          View All Dresses
+        </button>
+      </div>
+
+      <!-- Size & Comfort Assurance Banner -->
+      <div class="mt-16 bg-white rounded-3xl p-8 border border-stone-200 shadow-sm">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center text-xl flex-shrink-0">
+              <i class="fa-solid fa-ruler-combined"></i>
+            </div>
+            <div>
+              <h4 class="font-serif font-bold text-stone-900 text-base">Free-Size & Plus Friendly</h4>
+              <p class="text-xs text-stone-600 mt-1 leading-relaxed">
+                Designed with a roomy 44" chest circumference and forgiving A-line drape, our dresses fit sizes M up to XXL comfortably.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-rose-50 text-brand-burgundy flex items-center justify-center text-xl flex-shrink-0">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div>
+              <h4 class="font-serif font-bold text-stone-900 text-base">Pure Cotton Purity Guarantee</h4>
+              <p class="text-xs text-stone-600 mt-1 leading-relaxed">
+                No poly blends or rough seams. 100% genuine breathable combed cotton that allows air circulation and prevents sweating.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl flex-shrink-0">
+              <i class="fa-solid fa-box-open"></i>
+            </div>
+            <div>
+              <h4 class="font-serif font-bold text-stone-900 text-base">Discreet Safe Packaging</h4>
+              <p class="text-xs text-stone-600 mt-1 leading-relaxed">
+                Neatly ironed, folded, and waterproof-sealed in sustainable packaging with complete order receipt and care card included.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-stone-950 text-stone-300 pt-16 pb-12 border-t border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-stone-800">
+        
+        <div class="lg:col-span-2 space-y-4">
+          <a href="index.html" class="inline-block">
+            <span class="font-serif text-3xl font-bold text-white tracking-wider">GLAMORA</span>
+            <p class="text-[10px] tracking-[0.3em] uppercase text-stone-400 -mt-1">Collection</p>
+          </a>
+          <p class="text-xs text-stone-400 leading-relaxed max-w-sm">
+            Glamora Collection celebrates the timeless beauty of feminine grace and everyday ease. Designed with 100% pure natural cotton and handpicked traditional Indian motifs.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-white text-sm font-semibold uppercase tracking-wider mb-4">Shop Pages</h4>
+          <ul class="space-y-2.5 text-xs text-stone-400">
+            <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="clothes.html" class="hover:text-white transition-colors">All Clothes & Dresses</a></li>
+            <li><a href="sales.html" class="hover:text-rose-400 transition-colors">Sales & Special Offers</a></li>
+            <li><a href="cart.html" class="hover:text-white transition-colors">View Cart & Checkout</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white text-sm font-semibold uppercase tracking-wider mb-4">Customer Care</h4>
+          <ul class="space-y-2.5 text-xs text-stone-400">
+            <li><a href="about.html" class="hover:text-white transition-colors">Our Story & Craft</a></li>
+            <li><a href="contact.html" class="hover:text-white transition-colors">Contact Support</a></li>
+            <li><a href="contact.html#faqs" class="hover:text-white transition-colors">Shipping & Returns</a></li>
+            <li><a href="about.html#care-guide" class="hover:text-white transition-colors">Cotton Care Guide</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white text-sm font-semibold uppercase tracking-wider mb-4">Reach Us</h4>
+          <ul class="space-y-3 text-xs text-stone-400">
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-location-dot text-brand-gold mt-0.5"></i>
+              <span>Glamora Boutique, Fashion Avenue, Bandra West, Mumbai 400050</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i class="fa-solid fa-phone text-brand-gold"></i>
+              <span>+91 98765 43210</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i class="fa-solid fa-envelope text-brand-gold"></i>
+              <span>care@glamoracollection.com</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-4">
+        <p>© 2026 Glamora Collection. All rights reserved.</p>
+        <div class="flex items-center gap-4 text-stone-400">
+          <span title="Visa"><i class="fa-brands fa-cc-visa text-xl"></i></span>
+          <span title="Mastercard"><i class="fa-brands fa-cc-mastercard text-xl"></i></span>
+          <span title="Apple Pay"><i class="fa-brands fa-apple-pay text-2xl"></i></span>
+          <span class="text-[10px] bg-stone-800 px-2 py-0.5 rounded text-stone-300 font-mono">Cash on Delivery</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= SLIDE-OUT CART DRAWER ================= -->
+  <div id="cart-drawer-overlay" class="fixed inset-0 z-50 bg-stone-950/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300"></div>
+  <div id="cart-drawer" class="fixed top-0 right-0 bottom-0 z-50 w-full max-w-md bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out">
+    <div class="p-5 border-b border-stone-200 flex items-center justify-between bg-stone-50">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-bag-shopping text-brand-burgundy"></i>
+        <h3 class="font-serif font-bold text-lg text-stone-900">Your Shopping Bag</h3>
+        <span class="cart-counter-badge bg-rose-600 text-white text-xs font-bold px-2 py-0.5 rounded-full hidden">0</span>
+      </div>
+      <button onclick="closeCartDrawer()" class="p-1.5 text-stone-400 hover:text-stone-900 rounded-lg hover:bg-stone-200 transition-colors">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+    </div>
+    <div class="bg-rose-50 px-5 py-2.5 border-b border-rose-100 text-xs text-rose-900 flex items-center gap-2 font-medium">
+      <i class="fa-solid fa-truck-fast text-rose-600"></i>
+      <span>Free Express Shipping automatically applied on orders above ₹999!</span>
+    </div>
+    <div id="cart-drawer-items" class="flex-1 overflow-y-auto p-5 divide-y divide-stone-100"></div>
+    <div id="cart-drawer-empty" class="p-8 text-center my-auto">
+      <div class="w-16 h-16 rounded-full bg-stone-100 text-stone-400 flex items-center justify-center mx-auto mb-4 text-2xl">
+        <i class="fa-solid fa-bag-shopping"></i>
+      </div>
+      <h4 class="font-serif text-lg font-bold text-stone-800">Your bag is empty</h4>
+      <p class="text-xs text-stone-500 mt-1 max-w-xs mx-auto">Explore our pure cotton dresses and treat yourself to effortless everyday comfort.</p>
+    </div>
+    <div id="cart-drawer-footer" class="p-5 border-t border-stone-200 bg-stone-50 space-y-3">
+      <div class="flex items-center justify-between text-sm">
+        <span class="text-stone-600">Subtotal:</span>
+        <span id="cart-drawer-subtotal" class="font-bold text-stone-950 text-base">₹0</span>
+      </div>
+      <div class="grid grid-cols-2 gap-2 pt-1">
+        <a href="cart.html" class="w-full text-center py-3 border border-stone-300 hover:border-stone-900 text-stone-800 text-xs font-semibold rounded-xl transition-colors">View Cart</a>
+        <a href="cart.html#checkout" class="w-full text-center py-3 bg-brand-burgundy hover:bg-brand-burgundyDark text-white text-xs font-semibold rounded-xl shadow transition-colors">Checkout Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= QUICK VIEW MODAL ================= -->
+  <div id="quickview-modal" class="fixed inset-0 z-50 bg-stone-950/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="relative bg-white w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden border border-stone-200">
+      <button onclick="closeQuickView()" class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-stone-700 flex items-center justify-center shadow transition-colors">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div id="quickview-content"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    // State management for catalog page
+    let activeCategory = 'all';
+    let searchQuery = '';
+    let currentSort = 'featured';
+    let wishlistOnly = false;
+
+    function renderCatalog() {
+      const grid = document.getElementById('catalog-products-grid');
+      const emptyState = document.getElementById('catalog-empty-state');
+      const countDisplay = document.getElementById('product-count-display');
+      const activeBar = document.getElementById('active-filter-bar');
+      const activeText = document.getElementById('active-filter-text');
+      const clearBtn = document.getElementById('clear-filters-btn');
+
+      if (!grid) return;
+
+      // Filter products
+      let list = [...GLAMORA_PRODUCTS];
+
+      if (activeCategory !== 'all') {
+        list = list.filter(p => p.categorySlug === activeCategory);
+      }
+
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase().trim();
+        list = list.filter(p => 
+          p.name.toLowerCase().includes(q) || 
+          p.description.toLowerCase().includes(q) || 
+          p.category.toLowerCase().includes(q) ||
+          p.fabric.toLowerCase().includes(q)
+        );
+      }
+
+      if (wishlistOnly) {
+        const wList = getWishlist();
+        list = list.filter(p => wList.includes(p.id));
+      }
+
+      // Sort
+      if (currentSort === 'price-asc') {
+        list.sort((a, b) => a.price - b.price);
+      } else if (currentSort === 'price-desc') {
+        list.sort((a, b) => b.price - a.price);
+      } else if (currentSort === 'rating') {
+        list.sort((a, b) => b.rating - a.rating);
+      } else if (currentSort === 'discount') {
+        list.sort((a, b) => b.discountPercent - a.discountPercent);
+      }
+
+      // Update count
+      if (countDisplay) {
+        countDisplay.textContent = list.length;
+      }
+
+      // Check active filters indicator
+      const hasFilters = activeCategory !== 'all' || searchQuery.trim() !== '' || wishlistOnly || currentSort !== 'featured';
+      if (clearBtn) {
+        if (hasFilters) {
+          clearBtn.classList.remove('hidden');
+        } else {
+          clearBtn.classList.add('hidden');
+        }
+      }
+
+      if (hasFilters && activeBar && activeText) {
+        activeBar.classList.remove('hidden');
+        let parts = [];
+        if (activeCategory !== 'all') parts.push(`Category: "${activeCategory}"`);
+        if (searchQuery.trim()) parts.push(`Keyword: "${searchQuery}"`);
+        if (wishlistOnly) parts.push(`Saved in Wishlist`);
+        activeText.textContent = `Active: ${parts.join(' • ')}`;
+      } else if (activeBar) {
+        activeBar.classList.add('hidden');
+      }
+
+      // Render
+      if (list.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+      } else {
+        emptyState.classList.add('hidden');
+        grid.innerHTML = list.map(p => renderProductCard(p)).join('');
+      }
+
+      updateWishlistUI();
+    }
+
+    function setCategoryFilter(cat) {
+      activeCategory = cat;
+      document.querySelectorAll('#category-filter-group .filter-pill').forEach(btn => {
+        if (btn.getAttribute('data-cat') === cat) {
+          btn.className = 'filter-pill active px-4 py-2 rounded-xl text-xs font-semibold transition-all bg-brand-burgundy text-white shadow-sm';
+        } else {
+          btn.className = 'filter-pill px-4 py-2 rounded-xl text-xs font-semibold transition-all bg-white text-stone-700 border border-stone-200 hover:border-stone-400';
+        }
+      });
+      renderCatalog();
+    }
+
+    function handleCatalogSearch(val) {
+      searchQuery = val;
+      renderCatalog();
+    }
+
+    function handleSortChange(val) {
+      currentSort = val;
+      renderCatalog();
+    }
+
+    function toggleWishlistOnlyFilter() {
+      wishlistOnly = !wishlistOnly;
+      const btn = document.getElementById('wishlist-toggle-filter-btn');
+      if (wishlistOnly) {
+        btn.classList.add('bg-rose-50', 'text-rose-600', 'ring-1', 'ring-rose-400', 'rounded-xl');
+        showToast("Filtering by saved Wishlist items", 'heart');
+      } else {
+        btn.classList.remove('bg-rose-50', 'text-rose-600', 'ring-1', 'ring-rose-400', 'rounded-xl');
+      }
+      renderCatalog();
+    }
+
+    function resetAllFilters() {
+      activeCategory = 'all';
+      searchQuery = '';
+      currentSort = 'featured';
+      wishlistOnly = false;
+
+      const searchInput = document.getElementById('catalog-search-input');
+      if (searchInput) searchInput.value = '';
+
+      const sortSelect = document.getElementById('catalog-sort');
+      if (sortSelect) sortSelect.value = 'featured';
+
+      const wishBtn = document.getElementById('wishlist-toggle-filter-btn');
+      if (wishBtn) wishBtn.classList.remove('bg-rose-50', 'text-rose-600', 'ring-1', 'ring-rose-400', 'rounded-xl');
+
+      setCategoryFilter('all');
+    }
+
+    // On Load: Check URL parameters (e.g. ?category=... or ?q=...)
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const catParam = urlParams.get('category');
+      const qParam = urlParams.get('q');
+
+      if (catParam) {
+        setCategoryFilter(catParam);
+      }
+
+      if (qParam) {
+        searchQuery = qParam;
+        const searchInput = document.getElementById('catalog-search-input');
+        if (searchInput) searchInput.value = qParam;
+      }
+
+      if (window.location.hash === '#wishlist') {
+        toggleWishlistOnlyFilter();
+      }
+
+      renderCatalog();
+    });
+  </script>
+
+</body>
+</html>

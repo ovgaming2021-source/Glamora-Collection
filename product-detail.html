@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Dress Details | Glamora Collection</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              burgundy: '#631d2e',
+              burgundyDark: '#45121e',
+              rose: '#e11d48',
+              cream: '#faf7f2',
+              sand: '#f5f0e6',
+              gold: '#c59b27'
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-stone-50 text-stone-900 flex flex-col min-h-screen">
+
+  <!-- ================= TOP ANNOUNCEMENT BAR ================= -->
+  <div class="bg-brand-burgundy text-white text-xs py-2 px-4 overflow-hidden border-b border-brand-burgundyDark">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="hidden md:flex items-center gap-4 text-stone-200">
+        <span><i class="fa-solid fa-truck-fast text-brand-gold mr-1.5"></i> Free Express Shipping on orders over ₹999</span>
+        <span>•</span>
+        <span><i class="fa-solid fa-rotate-left text-brand-gold mr-1.5"></i> 7-Day Easy Exchange</span>
+      </div>
+      <div class="w-full md:w-auto text-center font-medium">
+        <span>🎉 Festive Launch Special: Use code <span class="bg-white/20 px-2 py-0.5 rounded font-mono font-bold text-amber-200">GLAM15</span> for 15% OFF!</span>
+      </div>
+      <div class="hidden md:flex items-center gap-3 text-stone-200">
+        <a href="contact.html" class="hover:text-white transition-colors">Help & FAQ</a>
+        <span>•</span>
+        <span class="flex items-center gap-1"><i class="fa-solid fa-phone text-xs"></i> +91 98765 43210</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= STICKY MAIN HEADER ================= -->
+  <header class="sticky top-0 z-40 nav-glass border-b border-stone-200/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <button id="mobile-menu-toggle" type="button" class="lg:hidden text-stone-800 hover:text-brand-burgundy p-2" aria-label="Open navigation menu">
+          <i class="fa-solid fa-bars-staggered text-xl"></i>
+        </button>
+
+        <a href="index.html" class="flex flex-col items-center sm:items-start group">
+          <span class="font-serif text-2xl sm:text-3xl font-extrabold tracking-wider text-brand-burgundy group-hover:text-brand-burgundyDark transition-colors">
+            GLAMORA
+          </span>
+          <span class="text-[9px] sm:text-[10px] uppercase tracking-[0.3em] font-medium text-stone-500 -mt-1">
+            Collection
+          </span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="index.html" class="text-sm font-medium text-stone-700 hover:text-brand-burgundy transition-colors">Home</a>
+          <a href="clothes.html" class="text-sm font-semibold text-brand-burgundy transition-colors">All Clothes</a>
+          <a href="sales.html" class="text-sm font-medium text-rose-700 hover:text-rose-900 transition-colors flex items-center gap-1.5">
+            Sales & Offers
+            <span class="bg-rose-100 text-rose-700 text-[10px] font-bold px-1.5 py-0.5 rounded-full badge-pulse">HOT</span>
+          </a>
+          <a href="about.html" class="text-sm font-medium text-stone-700 hover:text-brand-burgundy transition-colors">About Us</a>
+          <a href="contact.html" class="text-sm font-medium text-stone-700 hover:text-brand-burgundy transition-colors">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-2 sm:gap-4">
+          <form class="search-form hidden md:flex items-center relative">
+            <input 
+              type="search" 
+              name="q" 
+              placeholder="Search clothes..." 
+              class="w-48 lg:w-64 pl-9 pr-3 py-1.5 text-xs rounded-full bg-stone-100 border border-stone-200 focus:outline-none focus:border-brand-burgundy focus:ring-1 focus:ring-brand-burgundy transition-all"
+            />
+            <i class="fa-solid fa-magnifying-glass absolute left-3 text-stone-400 text-xs pointer-events-none"></i>
+          </form>
+
+          <a href="clothes.html#wishlist" class="relative p-2.5 text-stone-700 hover:text-rose-600 transition-colors" title="Wishlist">
+            <i class="fa-regular fa-heart text-lg"></i>
+            <span class="wishlist-counter-badge absolute top-1 right-1 w-4 h-4 bg-rose-600 text-white text-[10px] font-bold rounded-full items-center justify-center hidden">0</span>
+          </a>
+
+          <button 
+            type="button" 
+            onclick="openCartDrawer()" 
+            class="relative flex items-center gap-2 bg-stone-900 hover:bg-brand-burgundy text-white px-3.5 py-2 rounded-xl transition-all shadow-sm group"
+          >
+            <i class="fa-solid fa-bag-shopping text-sm group-hover:scale-110 transition-transform"></i>
+            <span class="hidden sm:inline text-xs font-semibold">Bag</span>
+            <span class="cart-counter-badge w-5 h-5 bg-rose-500 text-white text-[11px] font-bold rounded-full items-center justify-center hidden">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MOBILE MENU ================= -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 bg-stone-950/60 backdrop-blur-sm hidden transition-opacity">
+    <div class="fixed inset-y-0 left-0 max-w-xs w-full bg-white shadow-2xl p-6 flex flex-col justify-between overflow-y-auto">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-stone-200">
+          <div>
+            <span class="font-serif text-2xl font-bold text-brand-burgundy">GLAMORA</span>
+            <p class="text-[10px] tracking-widest uppercase text-stone-500">Collection</p>
+          </div>
+          <button id="mobile-menu-close" class="p-2 text-stone-500 hover:text-stone-900">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+        <nav class="mt-6 flex flex-col gap-3 font-medium">
+          <a href="index.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-stone-50 text-stone-800">
+            <span>Home</span> <i class="fa-solid fa-chevron-right text-xs"></i>
+          </a>
+          <a href="clothes.html" class="flex items-center justify-between p-2 rounded-lg bg-stone-100 text-brand-burgundy font-semibold">
+            <span>All Clothes</span> <i class="fa-solid fa-chevron-right text-xs"></i>
+          </a>
+          <a href="sales.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-rose-50 text-rose-700 font-semibold">
+            <span>Sales & Offers</span> <i class="fa-solid fa-chevron-right text-xs"></i>
+          </a>
+          <a href="about.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-stone-50 text-stone-800">
+            <span>About Us</span> <i class="fa-solid fa-chevron-right text-xs"></i>
+          </a>
+          <a href="contact.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-stone-50 text-stone-800">
+            <span>Contact & Support</span> <i class="fa-solid fa-chevron-right text-xs"></i>
+          </a>
+          <a href="cart.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-stone-50 text-stone-800">
+            <span>Shopping Cart</span> <i class="fa-solid fa-bag-shopping text-xs"></i>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <main class="flex-grow py-8 sm:py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Dynamic Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-stone-500 mb-8" id="product-breadcrumb">
+        <a href="index.html" class="hover:text-brand-burgundy">Home</a>
+        <i class="fa-solid fa-chevron-right text-[9px] text-stone-400"></i>
+        <a href="clothes.html" class="hover:text-brand-burgundy">Clothes</a>
+        <i class="fa-solid fa-chevron-right text-[9px] text-stone-400"></i>
+        <span class="text-stone-800 font-semibold truncate" id="breadcrumb-current-name">Dress Details</span>
+      </nav>
+
+      <!-- Main Product View Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+        
+        <!-- Left: Image Gallery & Magnifier (6 Cols) -->
+        <div class="lg:col-span-6 space-y-4">
+          <div class="relative bg-white rounded-3xl p-3 border border-stone-200 shadow-sm overflow-hidden group">
+            
+            <div class="zoom-preview aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100 flex items-center justify-center relative">
+              <img 
+                id="main-product-img" 
+                src="" 
+                alt="Glamora Dress" 
+                class="w-full h-full object-cover object-top"
+              />
+              
+              <span id="detail-badge" class="absolute top-4 left-4 bg-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                Featured
+              </span>
+
+              <button 
+                type="button" 
+                id="detail-wishlist-btn"
+                onclick="handleDetailWishlistToggle()"
+                class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-stone-700 hover:text-rose-600 shadow-md transition-all hover:scale-110 z-10"
+                title="Save to Wishlist"
+              >
+                <i class="fa-regular fa-heart text-base"></i>
+              </button>
+            </div>
+
+            <div class="text-[11px] text-stone-400 text-center py-2 flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-magnifying-glass-plus text-stone-500"></i> Hover cursor over image to zoom into cotton weave
+            </div>
+          </div>
+
+          <!-- Trust assurances under image -->
+          <div class="grid grid-cols-3 gap-3 text-center text-xs">
+            <div class="bg-white p-3 rounded-xl border border-stone-200">
+              <i class="fa-solid fa-leaf text-emerald-600 mb-1 text-sm"></i>
+              <p class="font-bold text-stone-800">100% Cotton</p>
+              <p class="text-[10px] text-stone-500">Pure combed fibers</p>
+            </div>
+            <div class="bg-white p-3 rounded-xl border border-stone-200">
+              <i class="fa-solid fa-truck-fast text-brand-burgundy mb-1 text-sm"></i>
+              <p class="font-bold text-stone-800">Fast Dispatch</p>
+              <p class="text-[10px] text-stone-500">Within 24 Hours</p>
+            </div>
+            <div class="bg-white p-3 rounded-xl border border-stone-200">
+              <i class="fa-solid fa-rotate-left text-amber-600 mb-1 text-sm"></i>
+              <p class="font-bold text-stone-800">7-Day Return</p>
+              <p class="text-[10px] text-stone-500">Size guarantee</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Purchase Panel & Detailed Info (6 Cols) -->
+        <div class="lg:col-span-6 space-y-6">
+          
+          <div>
+            <div class="flex items-center gap-2">
+              <span id="detail-category" class="text-xs font-bold uppercase tracking-wider text-brand-burgundy bg-rose-50 px-3 py-1 rounded-full">
+                Maxi Dress
+              </span>
+              <span class="text-xs text-emerald-600 font-semibold flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> In Stock & Ready to Ship
+              </span>
+            </div>
+
+            <h1 id="detail-title" class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-3 leading-snug">
+              Dress Name
+            </h1>
+
+            <p id="detail-tagline" class="text-xs sm:text-sm text-stone-500 mt-1 italic">
+              Tagline
+            </p>
+
+            <!-- Star ratings -->
+            <div class="flex items-center gap-2 mt-3">
+              <div class="flex text-amber-400 text-sm">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+              </div>
+              <span id="detail-rating-text" class="text-xs font-bold text-stone-800">4.9</span>
+              <a href="#reviews-section" class="text-xs text-brand-burgundy hover:underline">
+                (<span id="detail-reviews-count">142</span> customer reviews)
+              </a>
+            </div>
+          </div>
+
+          <!-- Price Row -->
+          <div class="p-4 bg-stone-100/80 rounded-2xl flex items-baseline gap-3 border border-stone-200/80">
+            <span id="detail-price" class="text-3xl font-extrabold text-stone-950">₹799</span>
+            <span id="detail-original-price" class="text-lg text-stone-400 line-through">₹1,299</span>
+            <span id="detail-discount-tag" class="text-xs font-bold text-emerald-700 bg-emerald-100 border border-emerald-300 px-2.5 py-1 rounded-md">
+              Save 38%
+            </span>
+            <span class="text-[11px] text-stone-500 ml-auto font-medium">Inclusive of all taxes</span>
+          </div>
+
+          <!-- Size Selector -->
+          <div class="space-y-2 pt-2">
+            <div class="flex items-center justify-between text-xs">
+              <label class="font-bold text-stone-800 uppercase tracking-wider">Select Size</label>
+              <a href="contact.html#size-chart" class="text-brand-burgundy hover:underline font-semibold flex items-center gap-1">
+                <i class="fa-solid fa-ruler-horizontal"></i> Size Chart
+              </a>
+            </div>
+            <div class="flex flex-wrap gap-2.5" id="detail-sizes-container">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <!-- Quantity & CTA Buttons -->
+          <div class="pt-2 space-y-3">
+            <div class="flex items-center gap-4">
+              <!-- Qty Selector -->
+              <div class="flex items-center border border-stone-300 rounded-xl overflow-hidden bg-white">
+                <button type="button" onclick="adjustDetailQty(-1)" class="px-3.5 py-3 text-stone-600 hover:bg-stone-100 transition-colors font-bold text-base">−</button>
+                <input type="number" id="detail-qty" value="1" min="1" max="10" class="w-12 text-center text-sm font-bold border-none focus:outline-none" readonly />
+                <button type="button" onclick="adjustDetailQty(1)" class="px-3.5 py-3 text-stone-600 hover:bg-stone-100 transition-colors font-bold text-base">+</button>
+              </div>
+
+              <!-- Add to Bag Button -->
+              <button 
+                type="button" 
+                onclick="submitDetailAddToCart()" 
+                class="flex-1 bg-stone-900 hover:bg-brand-burgundy text-white font-semibold py-3.5 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
+              >
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span>Add To Bag</span>
+              </button>
+            </div>
+
+            <!-- Instant Buy Button -->
+            <button 
+              type="button" 
+              onclick="submitDetailBuyNow()" 
+              class="w-full bg-brand-burgundy hover:bg-brand-burgundyDark text-white font-semibold py-3.5 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"
+            >
+              <i class="fa-solid fa-bolt"></i>
+              <span>Buy It Now (Instant Checkout)</span>
+            </button>
+          </div>
+
+          <!-- Postal Code Delivery Checker -->
+          <div class="p-4 bg-white rounded-2xl border border-stone-200 shadow-sm space-y-2">
+            <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider">Check Estimated Delivery</label>
+            <div class="flex gap-2">
+              <input 
+                type="text" 
+                id="pincode-input" 
+                maxlength="6" 
+                placeholder="Enter 6-digit Pincode (e.g. 400001)" 
+                class="flex-1 px-3 py-2 text-xs rounded-xl border border-stone-300 focus:outline-none focus:border-brand-burgundy"
+              />
+              <button 
+                type="button" 
+                onclick="checkPincodeDelivery()" 
+                class="bg-stone-800 hover:bg-stone-900 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-colors"
+              >
+                Check
+              </button>
+            </div>
+            <div id="pincode-result" class="text-xs hidden pt-1"></div>
+          </div>
+
+          <!-- Feature Bullets -->
+          <div class="pt-4 border-t border-stone-200">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-stone-800 mb-3">Key Highlights</h4>
+            <ul class="space-y-2 text-xs text-stone-600" id="detail-features-list">
+              <!-- Injected by JS -->
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Accordion Details Section -->
+      <div class="mt-16 bg-white rounded-3xl p-6 sm:p-10 border border-stone-200 shadow-sm">
+        <h3 class="font-serif text-2xl font-bold text-stone-900 mb-6">Product Details & Specifications</h3>
+        
+        <div class="space-y-4">
+          <!-- Description -->
+          <div class="border border-stone-200 rounded-2xl p-5 bg-stone-50">
+            <h4 class="font-bold text-sm text-stone-900 mb-2">Description & Silhouette</h4>
+            <p id="accordion-description" class="text-xs sm:text-sm text-stone-600 leading-relaxed"></p>
+          </div>
+
+          <!-- Fabric & Specs Table -->
+          <div class="border border-stone-200 rounded-2xl p-5 bg-stone-50">
+            <h4 class="font-bold text-sm text-stone-900 mb-3">Fabric & Technical Specifications</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-stone-700">
+              <div class="flex items-center gap-2">
+                <span class="text-stone-400 w-28">Fabric:</span>
+                <span class="font-semibold text-stone-900" id="spec-fabric"></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-stone-400 w-28">Dress Length:</span>
+                <span class="font-semibold text-stone-900" id="spec-length"></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-stone-400 w-28">Sleeve Style:</span>
+                <span class="font-semibold text-stone-900" id="spec-sleeves"></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-stone-400 w-28">Neckline:</span>
+                <span class="font-semibold text-stone-900" id="spec-neckline"></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-stone-400 w-28">Pockets:</span>
+                <span class="font-semibold text-stone-900" id="spec-pockets"></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-stone-400 w-28">Transparency:</span>
+                <span class="font-semibold text-stone-900">Opaque (Zero Sheer)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Care Instructions -->
+          <div class="border border-stone-200 rounded-2xl p-5 bg-stone-50">
+            <h4 class="font-bold text-sm text-stone-900 mb-2">Washing & Care Instructions</h4>
+            <ul class="list-disc list-inside space-y-1 text-xs text-stone-600" id="accordion-care-list">
+              <!-- Injected by JS -->
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews Section -->
+      <div id="reviews-section" class="mt-16">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-stone-200 gap-4">
+          <div>
+            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">Customer Reviews</h3>
+            <p class="text-xs text-stone-500 mt-1">Authentic ratings from verified buyers</p>
+          </div>
+
+          <button 
+            type="button" 
+            onclick="showToast('Thank you! Review form is open to verified buyers after delivery.', 'info')" 
+            class="bg-white border border-stone-300 hover:border-stone-900 text-stone-800 text-xs font-semibold px-4 py-2.5 rounded-xl transition-colors shadow-sm self-start"
+          >
+            Write a Review
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+          <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+            <div class="flex text-amber-400 text-xs mb-2">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <h5 class="text-xs font-bold text-stone-900">"Pure bliss to wear!"</h5>
+            <p class="text-xs text-stone-600 mt-1 leading-relaxed">
+              The cotton is so naturally cool and soft. The print looks even more vibrant in person. Fits beautifully with room to breathe.
+            </p>
+            <p class="text-[10px] text-stone-400 mt-3 font-medium">Kavita S. • Verified Buyer</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+            <div class="flex text-amber-400 text-xs mb-2">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <h5 class="text-xs font-bold text-stone-900">"Best loungewear purchase this year"</h5>
+            <p class="text-xs text-stone-600 mt-1 leading-relaxed">
+              Washed it twice already and there's no color bleeding at all. The pockets are deep enough for my phone, which is a rare find.
+            </p>
+            <p class="text-[10px] text-stone-400 mt-3 font-medium">Ritika M. • Verified Buyer</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+            <div class="flex text-amber-400 text-xs mb-2">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <h5 class="text-xs font-bold text-stone-900">"Flattering cut for all sizes"</h5>
+            <p class="text-xs text-stone-600 mt-1 leading-relaxed">
+              I was unsure about the Free Size, but it drapes gracefully without clinging or feeling like a sack. Five stars without hesitation!
+            </p>
+            <p class="text-[10px] text-stone-400 mt-3 font-medium">Deepa N. • Verified Buyer</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Dresses / You May Also Love -->
+      <div class="mt-20">
+        <div class="text-center mb-10">
+          <span class="text-xs font-bold uppercase tracking-widest text-brand-burgundy">Complete Your Wardrobe</span>
+          <h3 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-2">You May Also Love</h3>
+        </div>
+
+        <div id="related-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-stone-950 text-stone-300 pt-16 pb-12 border-t border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-stone-800">
+        <div class="lg:col-span-2 space-y-4">
+          <a href="index.html" class="inline-block">
+            <span class="font-serif text-3xl font-bold text-white tracking-wider">GLAMORA</span>
+            <p class="text-[10px] tracking-[0.3em] uppercase text-stone-400 -mt-1">Collection</p>
+          </a>
+          <p class="text-xs text-stone-400 leading-relaxed max-w-sm">
+            Glamora Collection celebrates the timeless beauty of feminine grace and everyday ease. Designed with 100% pure natural cotton and handpicked traditional Indian motifs.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-white text-sm font-semibold uppercase tracking-wider mb-4">Shop Pages</h4>
+          <ul class="space-y-2.5 text-xs text-stone-400">
+            <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="clothes.html" class="hover:text-white transition-colors">All Clothes & Dresses</a></li>
+            <li><a href="sales.html" class="hover:text-rose-400 transition-colors">Sales & Special Offers</a></li>
+            <li><a href="cart.html" class="hover:text-white transition-colors">View Cart & Checkout</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white text-sm font-semibold uppercase tracking-wider mb-4">Customer Care</h4>
+          <ul class="space-y-2.5 text-xs text-stone-400">
+            <li><a href="about.html" class="hover:text-white transition-colors">Our Story & Craft</a></li>
+            <li><a href="contact.html" class="hover:text-white transition-colors">Contact Support</a></li>
+            <li><a href="contact.html#faqs" class="hover:text-white transition-colors">Shipping & Returns</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white text-sm font-semibold uppercase tracking-wider mb-4">Reach Us</h4>
+          <ul class="space-y-3 text-xs text-stone-400">
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-location-dot text-brand-gold mt-0.5"></i>
+              <span>Glamora Boutique, Fashion Avenue, Bandra West, Mumbai 400050</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i class="fa-solid fa-phone text-brand-gold"></i>
+              <span>+91 98765 43210</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-4">
+        <p>© 2026 Glamora Collection. All rights reserved.</p>
+        <div class="flex items-center gap-4 text-stone-400">
+          <span title="Visa"><i class="fa-brands fa-cc-visa text-xl"></i></span>
+          <span title="Mastercard"><i class="fa-brands fa-cc-mastercard text-xl"></i></span>
+          <span class="text-[10px] bg-stone-800 px-2 py-0.5 rounded text-stone-300 font-mono">Cash on Delivery</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= SLIDE-OUT CART DRAWER ================= -->
+  <div id="cart-drawer-overlay" class="fixed inset-0 z-50 bg-stone-950/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300"></div>
+  <div id="cart-drawer" class="fixed top-0 right-0 bottom-0 z-50 w-full max-w-md bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out">
+    <div class="p-5 border-b border-stone-200 flex items-center justify-between bg-stone-50">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-bag-shopping text-brand-burgundy"></i>
+        <h3 class="font-serif font-bold text-lg text-stone-900">Your Shopping Bag</h3>
+        <span class="cart-counter-badge bg-rose-600 text-white text-xs font-bold px-2 py-0.5 rounded-full hidden">0</span>
+      </div>
+      <button onclick="closeCartDrawer()" class="p-1.5 text-stone-400 hover:text-stone-900 rounded-lg hover:bg-stone-200 transition-colors">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+    </div>
+    <div class="bg-rose-50 px-5 py-2.5 border-b border-rose-100 text-xs text-rose-900 flex items-center gap-2 font-medium">
+      <i class="fa-solid fa-truck-fast text-rose-600"></i>
+      <span>Free Express Shipping automatically applied on orders above ₹999!</span>
+    </div>
+    <div id="cart-drawer-items" class="flex-1 overflow-y-auto p-5 divide-y divide-stone-100"></div>
+    <div id="cart-drawer-empty" class="p-8 text-center my-auto">
+      <div class="w-16 h-16 rounded-full bg-stone-100 text-stone-400 flex items-center justify-center mx-auto mb-4 text-2xl">
+        <i class="fa-solid fa-bag-shopping"></i>
+      </div>
+      <h4 class="font-serif text-lg font-bold text-stone-800">Your bag is empty</h4>
+    </div>
+    <div id="cart-drawer-footer" class="p-5 border-t border-stone-200 bg-stone-50 space-y-3">
+      <div class="flex items-center justify-between text-sm">
+        <span class="text-stone-600">Subtotal:</span>
+        <span id="cart-drawer-subtotal" class="font-bold text-stone-950 text-base">₹0</span>
+      </div>
+      <div class="grid grid-cols-2 gap-2 pt-1">
+        <a href="cart.html" class="w-full text-center py-3 border border-stone-300 hover:border-stone-900 text-stone-800 text-xs font-semibold rounded-xl transition-colors">View Cart</a>
+        <a href="cart.html#checkout" class="w-full text-center py-3 bg-brand-burgundy hover:bg-brand-burgundyDark text-white text-xs font-semibold rounded-xl shadow transition-colors">Checkout Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    let currentProduct = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const idParam = urlParams.get('id');
+      const productId = idParam ? parseInt(idParam, 10) : 1;
+
+      currentProduct = getProductById(productId);
+      if (!currentProduct) {
+        currentProduct = GLAMORA_PRODUCTS[0];
+      }
+
+      // Populate UI with product details
+      document.title = `${currentProduct.name} | Glamora Collection`;
+      document.getElementById('breadcrumb-current-name').textContent = currentProduct.name;
+      
+      const mainImg = document.getElementById('main-product-img');
+      mainImg.src = currentProduct.image;
+      mainImg.alt = currentProduct.name;
+
+      document.getElementById('detail-badge').textContent = currentProduct.badge;
+      document.getElementById('detail-category').textContent = currentProduct.category;
+      document.getElementById('detail-title').textContent = currentProduct.name;
+      document.getElementById('detail-tagline').textContent = currentProduct.tagline;
+      document.getElementById('detail-rating-text').textContent = currentProduct.rating;
+      document.getElementById('detail-reviews-count').textContent = currentProduct.reviewsCount;
+      document.getElementById('detail-price').textContent = formatCurrency(currentProduct.price);
+      document.getElementById('detail-original-price').textContent = formatCurrency(currentProduct.originalPrice);
+      document.getElementById('detail-discount-tag').textContent = `Save ${currentProduct.discountPercent}%`;
+
+      // Sizes buttons
+      const sizeContainer = document.getElementById('detail-sizes-container');
+      sizeContainer.innerHTML = currentProduct.sizes.map((sz, i) => `
+        <button 
+          type="button" 
+          onclick="selectDetailSize(this)" 
+          class="detail-size-btn px-4 py-2 text-xs font-semibold rounded-xl border transition-all ${i === 0 ? 'border-brand-burgundy bg-brand-burgundy text-white shadow-sm' : 'border-stone-300 bg-white text-stone-700 hover:border-stone-400'}"
+        >
+          ${sz}
+        </button>
+      `).join('');
+
+      // Features list
+      const featuresList = document.getElementById('detail-features-list');
+      featuresList.innerHTML = currentProduct.features.map(f => `
+        <li class="flex items-start gap-2">
+          <i class="fa-solid fa-circle-check text-emerald-600 text-[11px] mt-0.5"></i>
+          <span>${f}</span>
+        </li>
+      `).join('');
+
+      // Accordion data
+      document.getElementById('accordion-description').textContent = currentProduct.description;
+      document.getElementById('spec-fabric').textContent = currentProduct.fabric;
+      document.getElementById('spec-length').textContent = currentProduct.length;
+      document.getElementById('spec-sleeves').textContent = currentProduct.sleeves;
+      document.getElementById('spec-neckline').textContent = currentProduct.neckline;
+      document.getElementById('spec-pockets').textContent = currentProduct.pockets;
+
+      const careList = document.getElementById('accordion-care-list');
+      careList.innerHTML = currentProduct.careInstructions.map(c => `<li>${c}</li>`).join('');
+
+      // Wishlist button state
+      updateDetailWishlistButton();
+
+      // Related products (the other dresses)
+      const relatedGrid = document.getElementById('related-products-grid');
+      const others = GLAMORA_PRODUCTS.filter(p => p.id !== currentProduct.id).slice(0, 3);
+      relatedGrid.innerHTML = others.map(p => renderProductCard(p)).join('');
+    });
+
+    function selectDetailSize(btn) {
+      document.querySelectorAll('.detail-size-btn').forEach(b => {
+        b.className = 'detail-size-btn px-4 py-2 text-xs font-semibold rounded-xl border transition-all border-stone-300 bg-white text-stone-700 hover:border-stone-400';
+      });
+      btn.className = 'detail-size-btn px-4 py-2 text-xs font-semibold rounded-xl border transition-all border-brand-burgundy bg-brand-burgundy text-white shadow-sm';
+    }
+
+    function adjustDetailQty(delta) {
+      const input = document.getElementById('detail-qty');
+      let val = parseInt(input.value, 10) + delta;
+      if (val < 1) val = 1;
+      if (val > 10) val = 10;
+      input.value = val;
+    }
+
+    function getSelectedDetailSize() {
+      const activeBtn = document.querySelector('.detail-size-btn.bg-brand-burgundy');
+      return activeBtn ? activeBtn.textContent.trim() : "Free Size";
+    }
+
+    function submitDetailAddToCart() {
+      if (!currentProduct) return;
+      const size = getSelectedDetailSize();
+      const qty = parseInt(document.getElementById('detail-qty').value, 10);
+      addToCart(currentProduct.id, qty, size);
+    }
+
+    function submitDetailBuyNow() {
+      if (!currentProduct) return;
+      const size = getSelectedDetailSize();
+      const qty = parseInt(document.getElementById('detail-qty').value, 10);
+      addToCart(currentProduct.id, qty, size);
+      window.location.href = 'cart.html#checkout';
+    }
+
+    function handleDetailWishlistToggle() {
+      if (!currentProduct) return;
+      toggleWishlist(currentProduct.id);
+      updateDetailWishlistButton();
+    }
+
+    function updateDetailWishlistButton() {
+      if (!currentProduct) return;
+      const btn = document.getElementById('detail-wishlist-btn');
+      const icon = btn.querySelector('i');
+      if (isWishlisted(currentProduct.id)) {
+        btn.classList.add('text-rose-600');
+        icon.className = 'fa-solid fa-heart text-base text-rose-600';
+      } else {
+        btn.classList.remove('text-rose-600');
+        icon.className = 'fa-regular fa-heart text-base';
+      }
+    }
+
+    function checkPincodeDelivery() {
+      const input = document.getElementById('pincode-input');
+      const result = document.getElementById('pincode-result');
+      const code = input.value.trim();
+
+      if (code.length === 6 && /^\d+$/.test(code)) {
+        result.classList.remove('hidden');
+        result.innerHTML = `
+          <div class="p-2.5 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200">
+            <p class="font-bold"><i class="fa-solid fa-truck text-emerald-600 mr-1"></i> Delivery available to pincode <b>${code}</b>!</p>
+            <p class="text-[11px] text-emerald-700 mt-0.5">Estimated delivery in <b>3-4 business days</b> with tracking link sent by SMS & Email.</p>
+          </div>
+        `;
+      } else {
+        result.classList.remove('hidden');
+        result.innerHTML = `
+          <div class="p-2.5 rounded-lg bg-rose-50 text-rose-800 border border-rose-200">
+            <p class="font-semibold"><i class="fa-solid fa-circle-exclamation text-rose-600 mr-1"></i> Please enter a valid 6-digit postal code.</p>
+          </div>
+        `;
+      }
+    }
+  </script>
+
+</body>
+</html>
